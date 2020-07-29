@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "z0WtVQb9JamYAg3eq2dREFT6XAIiJiu2U2R6afRvbMsVktO6cBI34PriuuKUt72iNF0D/yaV+HhVfSbZcN5zGg==",
+  "success": true,
+  "projectFilePath": "C:\\dev\\expense-analyzer\\src\\Core\\Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\karol\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\karol\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
