@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core
+namespace ExpenseAnalyzer.Core
 {
     public class Transaction
     {
