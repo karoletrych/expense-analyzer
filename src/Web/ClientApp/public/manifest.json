@@ -1,6 +1,6 @@
 {
-  "short_name": "WebApi",
-  "name": "WebApi",
+  "short_name": "web",
+  "name": "web",
   "icons": [
     {
       "src": "favicon.ico",
