@@ -5,6 +5,11 @@ namespace ExpenseAnalyzer.Core
 {
     public class ImportedTransactions
     {
-        public IEnumerable<Transaction> Transactions { get; set; }
+        public IEnumerable<Transaction> Transactions { get; }
+
+        public ImportedTransactions(IEnumerable<Transaction> transactions)
+        {
+            Transactions = transactions;
+        }
     }
 }
