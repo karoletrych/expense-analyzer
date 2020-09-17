@@ -9,35 +9,35 @@ namespace ExpenseAnalyzer.Core
 {
     public class NestBankCsv
     {
-        public DateTime DataOperacji { get; set; }
-        public string RodzajOperacji { get; set; }
-        public decimal Kwota { get; set; }
-        public string Waluta { get; set; }
-        public string DaneKontrahenta { get; set; }
-        public string NumerRachunkuKontrahenta { get; set; }
-        public string TytułOperacji { get; set; }
-        public DateTime DataKsięgowania { get; set; }
-        public decimal SaldoPoOperacji { get; set; }
+        public DateTime TransactionDate { get; set; }
+        public string TransactionType { get; set; }
+        public decimal Amount { get; set; }
+        public string Currency { get; set; }
+        public string ContractorData { get; set; }
+        public string ContractorAccountNumber { get; set; }
+        public string TransactionTitle { get; set; }
+        public DateTime PostingDate { get; set; }
+        public decimal BalanceAfterTransaction { get; set; }
     }
 
     class NestBankCsvMapping : CsvMapping<NestBankCsv>
     {
-        public NestBankCsvMapping() : base()
+        public NestBankCsvMapping()
         {
-            MapProperty(0, x => x.DataOperacji);
-            MapProperty(1, x => x.RodzajOperacji);
-            MapProperty(2, x => x.Kwota);
-            MapProperty(3, x => x.Waluta);
-            MapProperty(4, x => x.DaneKontrahenta);
-            MapProperty(5, x => x.NumerRachunkuKontrahenta);
-            MapProperty(6, x => x.TytułOperacji);
-            MapProperty(7, x => x.DataKsięgowania);
-            MapProperty(8, x => x.SaldoPoOperacji);
+            MapProperty(0, x => x.TransactionDate);
+            MapProperty(1, x => x.PostingDate);
+            MapProperty(2, x => x.TransactionType);
+            MapProperty(3, x => x.Amount);
+            MapProperty(4, x => x.Currency);
+            MapProperty(5, x => x.ContractorData);
+            MapProperty(6, x => x.ContractorAccountNumber);
+            MapProperty(7, x => x.TransactionTitle);
+            MapProperty(8, x => x.BalanceAfterTransaction);
         }
     }
 
 
-    public class CsvTransactionParser : ITransactionParser
+    public class NestBankCsvTransactionParser : ITransactionParser
     {
         public ImportedTransactions Parse(Stream inputFileStream)
         {
@@ -50,7 +50,7 @@ namespace ExpenseAnalyzer.Core
             var transactions =
                 records
                 .Where(record => record.IsValid)
-                .Select(record => new Transaction(record.Result.Kwota, record.Result.DataOperacji));
+                .Select(record => new Transaction(record.Result.Amount, record.Result.TransactionDate));
 
             return new ImportedTransactions(transactions);
         }
