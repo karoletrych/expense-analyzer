@@ -46,7 +46,6 @@ namespace ExpenseAnalyzer.Core
 
             var records = csvParser.ReadFromStream(inputFileStream, Encoding.UTF8);
 
-            // TODO: skipped
             var transactions =
                 records
                 .Where(record => record.IsValid)
