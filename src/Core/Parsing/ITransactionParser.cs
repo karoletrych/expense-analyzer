@@ -1,9 +1,10 @@
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ExpenseAnalyzer.Core
 {
     public interface ITransactionParser
     {
-        ImportedTransactions Parse(Stream inputFileStream); 
+        Task<ImportedTransactions> Parse(Stream inputFileStream); 
     }
 }

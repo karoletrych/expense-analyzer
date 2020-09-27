@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TinyCsvParser;
 using TinyCsvParser.Mapping;
 
@@ -39,7 +40,7 @@ namespace ExpenseAnalyzer.Core
 
     public class NestBankCsvTransactionParser : ITransactionParser
     {
-        public ImportedTransactions Parse(Stream inputFileStream)
+        public Task<ImportedTransactions> Parse(Stream inputFileStream)
         {
             CsvParserOptions csvParserOptions = new CsvParserOptions(true, ',');
             var csvParser = new CsvParser<NestBankCsv>(csvParserOptions, new NestBankCsvMapping());
@@ -51,7 +52,7 @@ namespace ExpenseAnalyzer.Core
                 .Where(record => record.IsValid)
                 .Select(record => new Transaction(record.Result.Amount, record.Result.TransactionDate));
 
-            return new ImportedTransactions(transactions);
+            return Task.FromResult(new ImportedTransactions(transactions));
         }
     }
 }
