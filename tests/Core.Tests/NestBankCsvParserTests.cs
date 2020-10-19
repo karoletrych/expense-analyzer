@@ -9,11 +9,11 @@ namespace Core.Tests
     public class NestBankCsvParserTests
     {
         [Fact]
-        public void ParsesCsv()
+        public async void ParsesCsv()
         {
             using(FileStream fs = File.OpenRead("../../../lista.csv"))
             {
-                var transactions = new NestBankCsvTransactionParser().Parse(fs);
+                var transactions = await new NestBankCsvTransactionParser().Parse(fs);
                 transactions.Transactions.Should().NotBeEmpty();
             }
         }

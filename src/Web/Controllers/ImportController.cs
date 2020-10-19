@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using ExpenseAnalyzer.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ImportController : ControllerBase
     {
         private readonly ILogger<ImportController> _logger;
@@ -21,12 +22,12 @@ namespace Web.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile formFile)
+        public async Task<IActionResult> UploadFile(IFormFile file)
         {
-            var stream = formFile.OpenReadStream();
-            await _transactionParser.Parse(stream);
+            var stream = file.OpenReadStream();
+            var result = await _transactionParser.Parse(stream);
 
-            return Created(nameof(ImportController), null);
+            return Ok(result.Transactions.Count());
         }
     }
 }
